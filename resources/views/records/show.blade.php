@@ -37,7 +37,7 @@
                             @foreach ($records as $index => $record)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $record->employee_id }}</td>
+                                    <td class="text-center">{{ $record->employee_id }}</td>
                                     <td>{{ $record->employee->firstName . ' ' . $record->employee->middleName . ' ' . $record->employee->lastName ?? 'N/A' }}</td>
                                     <td>{{ $record->employee->department->name ?? 'N/A' }}</td>
                                     <td>{{ $record->attended_at }}</td>

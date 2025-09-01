@@ -17,10 +17,10 @@
         }
 
         .clock-container {
-            background: linear-gradient(135deg, #212529 0%, #495057 100%);
+            background: #212529;
             color: white;
             border-radius: 20px;
-            padding: 2.5rem;
+            padding: 3.5rem 2.5rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             margin-bottom: 1.5rem;
         }
@@ -30,7 +30,7 @@
             font-weight: 700;
             text-align: center;
             font-family: 'Courier New', monospace;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            /* text-shadow: 0 0 20px rgba(255, 255, 255, 0.3); */
             margin-bottom: 0.5rem;
         }
 

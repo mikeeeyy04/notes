@@ -37,10 +37,10 @@
                             <tr>
                                 <td class="text-center" style="width: 100px;">
                                     @if (!$employee->image)
-                                        <img src="img/default-avatar.jpg" class="rounded-circle"
+                                        <img src="img/default-avatar.jpg" class="rounded-circle mx-auto d-block"
                                             style="width: 60px; height: 60px; object-fit: cover;" alt="Avatar" />
                                     @else
-                                        <img src="{{ Storage::url($employee->image) }}" class="rounded-circle"
+                                        <img src="{{ Storage::url($employee->image) }}" class="rounded-circle mx-auto d-block"
                                             style="width: 60px; height: 60px; object-fit: cover;" alt="Avatar" />
                                     @endif
                                 </td>
