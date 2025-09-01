@@ -8,11 +8,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 
-        <title>Employees</title>
+        <title>Attendance Records</title>
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+
+            .record-card {
+                transition: all 0.3s ease;
+                border: 1px solid #dee2e6;
+            }
+
+            .record-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .btn-action {
+                transition: all 0.2s ease;
+            }
+
+            .btn-action:hover {
+                transform: translateX(5px);
+            }
+
+            .stats-card {
+                background: linear-gradient(135deg, #212529 0%, #495057 100%);
+                color: white;
+            }
+
+            .status-badge {
+                transition: all 0.3s ease;
+            }
+
+            .time-in {
+                background: linear-gradient(135deg, #28a745, #20c997);
+            }
+
+            .time-out {
+                background: linear-gradient(135deg, #dc3545, #e83e8c);
+            }
+
+            .present {
+                background: linear-gradient(135deg, #007bff, #6610f2);
+            }
+        </style>
     </head>
 
     <body>
@@ -20,9 +63,7 @@
         <!-- Optional JavaScript; choose one of the two! -->
 
         <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
         <!--

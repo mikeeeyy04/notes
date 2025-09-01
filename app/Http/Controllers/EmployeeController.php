@@ -34,7 +34,7 @@ class EmployeeController extends Controller
             'middleName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'age' => 'required|integer',
-            'department_id' => 'required|max:255',
+            'department_id' => 'nullable|max:255',
             'birthday' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

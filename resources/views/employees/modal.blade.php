@@ -41,7 +41,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-dark">
+                    <i class="bi bi-save me-2"></i>Save Employee
+                </button>
                 {!! Form::close() !!}
             </div>
         </div>
