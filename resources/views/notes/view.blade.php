@@ -15,7 +15,7 @@
                     </div>
                     <div class='mb-3'>
                         {{ Form::label('content', 'Content') }}
-                        {{ Form::textarea('content', null, ['class' => 'form-control']) }}
+                        {{ Form::textarea('content', null, ['class' => 'form-control', 'id' => 'ckeditor_' . $notes->id]) }}
                     </div>
                     <div class="row mb-3">
                         <div class="col">

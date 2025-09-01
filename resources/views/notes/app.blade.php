@@ -38,7 +38,32 @@
                 @yield('content')
             </div>
             @include('notes.modal')
+            @include('notes.view')
         </main>
+
+        <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                ['ckeditor1', 'ckeditor2'].forEach(id => {
+                    const element = document.querySelector(`#${id}`);
+                    if (element) {
+                        ClassicEditor
+                            .create(element)
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    }
+                });
+                document.querySelectorAll('textarea[id^="ckeditor_"]').forEach(textarea => {
+                    ClassicEditor
+                        .create(textarea)
+                        .catch(error => {
+                            console.error(error);
+                        });
+                });
+            });
+        </script>
+
     </body>
 
     </html>

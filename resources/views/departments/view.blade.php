@@ -60,7 +60,7 @@
 
                         {{-- Optional: Delete button with confirmation modal --}}
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"
-                            data-bs-target="#deleteemployee{{ $department->id }}">
+                            data-bs-target="#deleteDepartment{{ $department->id }}">
                             Delete
                         </button>
 
@@ -74,19 +74,19 @@
 
 
 
-    {{-- <div>
-        <div class="modal fade" id="deleteemployee{{ $departments->id }}" tabindex="-1"
-            aria-labelledby="deleteemployeeModalLabel" aria-hidden="true">
+    <div>
+        <div class="modal fade" id="deleteDepartment{{ $department->id }}" tabindex="-1"
+            aria-labelledby="deleteDepartmentModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteemployeeModalLabel">Delete Confirmation</h5>
+                        <h5 class="modal-title" id="deleteDepartmentModalLabel">Delete Confirmation</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <span class="bold">"<strong>{{ $departments->title }}</strong>"</span> employee will be
+                        <span class="bold">"<strong>{{ $department->name }}</strong>"</span> department will be
                         deleted permanently. Are you sure?
-                        {!! Form::model($departments, ['method' => 'delete', 'route' => ['departments.destroy', $departments->id]]) !!}
+                        {!! Form::model($department, ['method' => 'delete', 'route' => ['departments.destroy', $department->id]]) !!}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -96,5 +96,5 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 @endforeach

@@ -11,7 +11,7 @@
                     <div class="modal-body">
                         {!! Form::model($employees, [
                             'method' => 'patch',
-                            'route' => ['employees.update', $employee->id],
+                            'route' => ['employees.update', $employees->id],
                             'files' => true,
                         ]) !!}
 
@@ -31,13 +31,27 @@
                             {{ Form::label('department_id', 'Department') }}
                             {{ Form::select('department_id', $departments->pluck('name', 'id'), $employees->department_id, ['class' => 'form-control', 'placeholder' => 'Select Department']) }}
                         </div>
+                        @php
+                            $today = date('Y-m-d');
+                        @endphp
                         <div class='mb-3'>
                             {{ Form::label('birthday', 'Birthday') }}
-                            {{ Form::date('birthday', $employees->birthday ? \Carbon\Carbon::parse($employees->birthday)->format('Y-m-d') : '', ['class' => 'form-control']) }}
+                            {{ Form::date(
+                                'birthday',
+                                $employees->birthday ? \Carbon\Carbon::parse($employees->birthday)->format('Y-m-d') : '',
+                                [
+                                    'class' => 'form-control birthday',
+                                    'placeholder' => 'Birthday',
+                                    'max' => $today,
+                                ],
+                            ) }}
                         </div>
                         <div class='mb-3'>
                             {{ Form::label('age', 'Age') }}
-                            {{ Form::text('age', $employees->age, ['class' => 'form-control', 'readonly' => true, 'id' => 'age']) }}
+                            {{ Form::text('age', $employees->age, [
+                                'class' => 'form-control age',
+                                'readonly' => true,
+                            ]) }}
                         </div>
                         <div class='mb-3'>
                             {{ Form::label('image', 'Profile Image') }}
@@ -56,8 +70,7 @@
         </div>
     </div>
 
-                {{-- @include('employees.script') --}}
-                {{-- @include('employees.script') --}}
+    {{-- @include('employees.script') --}}
 
     <div>
         <div class="modal fade" id="deleteemployee{{ $employees->id }}" tabindex="-1"
@@ -69,7 +82,9 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <span class="bold">"<strong>{{ $employees->title }}</strong>"</span> employee will be deleted
+                        <span
+                            class="bold">"<strong>{{ ($employee->firstName ?? '') . ' ' . ($employee->middleName ?? '') . ' ' . ($employee->lastName ?? '') }}</strong>"</span>
+                        employee will be deleted
                         permanently. Are you sure?
                         {!! Form::model($employees, ['method' => 'delete', 'route' => ['employees.destroy', $employees->id]]) !!}
                     </div>

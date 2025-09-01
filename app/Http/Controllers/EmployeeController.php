@@ -15,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $employees = Employee::with('department')->paginate(10);
         $departments = Department::all();
         
 
@@ -34,6 +34,7 @@ class EmployeeController extends Controller
             'middleName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'age' => 'required|integer',
+            'department_id' => 'required|max:255',
             'birthday' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -52,6 +53,7 @@ class EmployeeController extends Controller
         $employee->lastName = $request->lastName;
         $employee->age = $request->age;
         $employee->birthday = $request->birthday;
+        $employee->department_id = $request->department_id;
         $employee->image = $profileImage;
         $employee->user_id = auth()->id();
         $employee->datecreated = now();
@@ -109,6 +111,7 @@ class EmployeeController extends Controller
             'middleName' => 'required|max:255',
             'lastName' => 'required|max:255',
             'age' => 'required|integer',
+            'department_id' => 'required|max:255',
             'birthday' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -120,7 +123,7 @@ class EmployeeController extends Controller
         }
 
 
-        $employees = Employee::find($id);
+        $employees = Employee::find($request->id);
         $employees->firstName = $request->firstName;
         $employees->middleName = $request->middleName;
         $employees->lastName = $request->lastName;

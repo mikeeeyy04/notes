@@ -38,8 +38,8 @@
                 @yield('content')
             </div>
             @include('employees.modal')
-            @include('employees.script')
             @include('employees.view')
+            @include('employees.script')
         </main>
 
     </body>

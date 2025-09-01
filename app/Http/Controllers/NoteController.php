@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
- use App\Models\Note;
 
+use App\Models\Note;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Mews\Purifier\Facades\Purifier;
 
 class NoteController extends Controller
 {
@@ -14,10 +16,10 @@ class NoteController extends Controller
      */
     public function index()
     {
-    $notes = Note::all();
-    return view('notes.show', compact('notes'));
+        $notes = Note::all();
+        return view('notes.show', compact('notes'));
+        
     }
-
 
 
     /**
@@ -32,13 +34,13 @@ class NoteController extends Controller
             'content' => 'required',
         ]);
 
-    $notes = new Note;
-    $notes->title = $request->title;
-    $notes->content = $request->content;
-    $notes->user_id = auth()->id();
-    $notes->datecreated = now();
-    $notes->dateupdated = now();
-    $notes->save();
+        $notes = new Note;
+        $notes->title = $request->title;
+        $notes->content = $request->content;
+        $notes->user_id = auth()->id();
+        $notes->datecreated = now();
+        $notes->dateupdated = now();
+        $notes->save();
 
         return redirect('/notes')->with('success', 'Note added successfully!');
     }
@@ -86,11 +88,11 @@ class NoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-    $notes = Note::find($id);
-    $notes->title = $request->title;
-    $notes->content = $request->content;
-    $notes->dateupdated = now();
-    $notes->save();
+        $notes = Note::find($id);
+        $notes->title = $request->title;
+        $notes->content = $request->content;
+        $notes->dateupdated = now();
+        $notes->save();
 
         return redirect('/notes')->with('success', 'Note updated successfully!');
     }

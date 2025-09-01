@@ -67,10 +67,11 @@ class DepartmentController extends Controller
     }
 
 
-    public function destroy(Department $department)
+    public function destroy(Department $department, $id)
     {
+        $department = Department::find($id);
         $department->delete();
 
-        return redirect()->route('departments.index')->with('success', 'Department deleted.');
+        return redirect('/departments')->with('success', 'Department deleted.');
     }
 }

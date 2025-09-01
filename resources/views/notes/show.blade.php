@@ -25,7 +25,7 @@
                 <div class="p-5 mb-4 bg-light rounded-3 latest-note">
                     <div class="container-fluid py-2">
                         <h1 class="display-5 fw-bold">{{ $sortedNotes[0]->title ?? 'Untitled' }}</h1>
-                        <p class="col-md-8 fs-4">{{ $sortedNotes[0]->content ?? '' }}</p>
+                        <p class="col-md-8 fs-4">{!! $sortedNotes[0]->content ?? '' !!}</p>
                         <button class="btn text-white btn-lg bg-dark" type="button" data-bs-toggle="modal" data-bs-target="#viewNote{{ $sortedNotes[0]->id }}"><i class="bi bi-eye me-2"></i>View Note</button>
                         @include('notes.view')
                     </div>
@@ -38,7 +38,7 @@
                                 <div
                                     class="h-100 p-5 {{ $loop->index % 2 == 0 ? 'text-white bg-dark' : 'bg-light border' }} rounded-3">
                                     <h2>{{ $note->title ?? 'Untitled' }}</h2>
-                                    <p>{{ $note->content ?? '' }}</p>
+                                    <p>{!! $note->content ?? '' !!}</p>
                                     <button class="btn {{ $loop->index % 2 == 0 ? 'btn-outline-light' : 'btn-outline-secondary' }}"
                                         type="button" data-bs-toggle="modal" data-bs-target="#viewNote{{ $note->id }}"><i class="bi bi-eye me-2"></i>View Note</button>
                                     @include('notes.view', ['note' => $note])
