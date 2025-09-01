@@ -36,7 +36,7 @@
             }
 
             .stats-card {
-                background: linear-gradient(135deg, #212529 0%, #495057 100%);
+                background: #212529;
                 color: white;
             }
 
