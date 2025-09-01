@@ -13,4 +13,9 @@ class Attendance extends Model
         'attended_at',
         'checked_out_at',
     ];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
 }

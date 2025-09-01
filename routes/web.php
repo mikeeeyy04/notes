@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\RecordsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
     Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+
+    Route::get('/records', [RecordsController::class, 'index'])->name('records.index');
     
 });
 

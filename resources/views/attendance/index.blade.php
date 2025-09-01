@@ -229,7 +229,7 @@
                             <div class="text-center mb-4">
                                 <i class="bi bi-person-badge fs-1 text-dark mb-3"></i>
                                 <h3 class="fw-bold">Record Attendance</h3>
-                                <p class="text-muted">Enter your Employee ID to check in/out</p>
+                                <p class="text-muted">Enter your Employee ID to time in/out</p>
                             </div>
 
                             <div class="mb-4 px-5">
@@ -446,7 +446,7 @@
 
         function addRecentActivity(employee) {
             const isCheckOut = !!employee.checked_out_at;
-            const status = isCheckOut ? 'Check Out' : 'Check In';
+            const status = isCheckOut ? 'Time Out' : 'Time In';
             const timestamp = isCheckOut ? employee.checked_out_at : employee.attended_at;
 
             const time = new Date(timestamp);
