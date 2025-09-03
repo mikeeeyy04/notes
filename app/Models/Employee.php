@@ -16,6 +16,7 @@ class Employee extends Model
         'age',
         'image',
         'department_id',
+        'salary',
         'user_id',
     ];
 
@@ -28,5 +29,10 @@ class Employee extends Model
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function payroll()
+    {
+        return $this->belongsTo(Payroll::class);
     }
 }

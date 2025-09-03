@@ -24,7 +24,7 @@
             @if ($sortedNotes->count())
                 <div class="p-5 mb-4 bg-dark rounded-3 text-ligth latest-note">
                     <div class="container-fluid text-light py-2">
-                        <h1 class="display-5 text-light fw-bold">{{ $sortedNotes[0]->title ?? 'Untitled' }}</h1>
+                        <h1 class="display-5 text-light fw-bold border-bottom">{{ $sortedNotes[0]->title ?? 'Untitled' }}</h1>
                         <p class="col-md-8 fs-4">{!! $sortedNotes[0]->content ?? '' !!}</p>
                         <button class="btn text-dark btn-lg bg-light" type="button" data-bs-toggle="modal" data-bs-target="#viewNote{{ $sortedNotes[0]->id }}"><i class="bi bi-eye me-2"></i>View Note</button>
                         @include('notes.view')
@@ -37,7 +37,7 @@
                             <div class="col-md-6 mb-3">
                                 <div
                                     class="h-100 p-5 {{ $loop->index % 6 == 0 ? 'bg-light border' : ($loop->index % 6 == 1 ? 'text-white bg-dark' : ($loop->index % 6 == 2 ? 'text-white bg-dark' : ($loop->index % 6 == 3 ? 'bg-light border' : ($loop->index % 6 == 4 ? 'bg-light border' : 'text-white bg-dark')))) }} rounded-3">
-                                    <h2>{{ $note->title ?? 'Untitled' }}</h2>
+                                    <h2 class="border-bottom">{{ $note->title ?? 'Untitled' }}</h2>
                                     <p>{!! $note->content ?? '' !!}</p>
                                     <button class="btn {{ $loop->index % 6 == 0 ? 'btn-outline-secondary' : ($loop->index % 6 == 1 ? 'btn-outline-light' : ($loop->index % 6 == 2 ? 'btn-outline-light' : ($loop->index % 6 == 3 ? 'btn-outline-secondary' : ($loop->index % 6 == 4 ? 'btn-outline-secondary' : 'btn-outline-light')))) }}"
                                         type="button" data-bs-toggle="modal" data-bs-target="#viewNote{{ $note->id }}"><i class="bi bi-eye me-2"></i>View Note</button>

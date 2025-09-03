@@ -23,6 +23,11 @@
                     {{ Form::label('department_id', 'Department') }}
                     {{ Form::select('department_id', $departments->pluck('name', 'id'), '', ['class' => 'form-control', 'placeholder' => 'Select Department']) }}
                 </div>
+                <div class='input-group mb-3'>
+                    <span class="input-group-text">₱</span>
+                    {{ Form::number('salary', '', ['class' => 'form-control', 'placeholder' => 'Salary per hour']) }}
+                    <span class="input-group-text">.00</span>
+                </div>
                 @php
                     $today = date('Y-m-d');
                 @endphp

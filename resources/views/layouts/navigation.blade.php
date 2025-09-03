@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-0">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -12,23 +12,26 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-decoration-none">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('notes')" :active="request()->routeIs('notes')">
+                    <x-nav-link :href="route('notes')" :active="request()->routeIs('notes')" class="text-decoration-none">
                         {{ __('Notes') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('employees')" :active="request()->routeIs('employees')">
+                    <x-nav-link :href="route('employees')" :active="request()->routeIs('employees')" class="text-decoration-none">
                         {{ __('Employees') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('departments')" :active="request()->routeIs('departments')">
+                    <x-nav-link :href="route('departments')" :active="request()->routeIs('departments')" class="text-decoration-none">
                         {{ __('Departments') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('records.index')" :active="request()->routeIs('records')">
+                    <x-nav-link :href="route('records.index')" :active="request()->routeIs('records')" class="text-decoration-none">
                         {{ __('Records') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('attendance.index')" :active="request()->routeIs('attendance')">
+                    <x-nav-link :href="route('attendance.index')" :active="request()->routeIs('attendance')" class="text-decoration-none">
                         {{ __('Attendance') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('payroll.index')" :active="request()->routeIs('payroll')" class="text-decoration-none">
+                        {{ __('Payroll') }}
                     </x-nav-link>
                 </div>
             </div>

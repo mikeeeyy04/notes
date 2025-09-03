@@ -47,6 +47,7 @@
                                         <th scope="col">Department</th>
                                         <th scope="col">Time In</th>
                                         <th scope="col">Time Out</th>
+                                        <th scope="col">Total Hours</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
@@ -87,6 +88,9 @@
                                                 @else
                                                     <span class="text-muted">-</span>
                                                 @endif
+                                            </td>
+                                            <td>
+                                                <p class="">{{ $record->total_hours ?? 'N/A' }}</p>
                                             </td>
                                             <td>
                                                 @if($record->checked_out_at)

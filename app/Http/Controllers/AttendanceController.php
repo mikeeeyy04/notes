@@ -29,8 +29,15 @@ class AttendanceController extends Controller
 
         if ($attendance) {
             if (is_null($attendance->checked_out_at)) {
+                $checkedIn = $attendance->attended_at;
+                $checkedOut = now();
+                $diffInSeconds = $checkedOut->diffInSeconds($checkedIn);
+                $hours = floor($diffInSeconds / 3600);
+                $minutes = floor(($diffInSeconds % 3600) / 60);
+                $totalHoursFormatted = sprintf('%02d:%02d', $hours, $minutes);
                 $attendance->update([
-                    'checked_out_at' => now()
+                    'checked_out_at' => $checkedOut,
+                    'total_hours' => $totalHoursFormatted
                 ]);
 
                 return response()->json([
@@ -40,7 +47,8 @@ class AttendanceController extends Controller
                         'age' => \Carbon\Carbon::parse($employee->birthday)->age ?? 'N/A',
                         'image' => asset('storage/' . $employee->image),
                         'department' => $employee->department->name,
-                        'checked_out_at' => now()->format('Y-m-d h:i:s A'),
+                        'checked_out_at' => $checkedOut->format('Y-m-d h:i:s A'),
+                        'total_hours' => $totalHoursFormatted,
                     ]
                 ]);
             }

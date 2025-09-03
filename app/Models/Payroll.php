@@ -5,18 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Attendance extends Model
+class Payroll extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'deductions' => 'float',
+    ];
+    use HasFactory;
+
     protected $fillable = [
         'employee_id',
-        'attended_at',
-        'checked_out_at',
+        'pay_date',
+        'start_date',
+        'end_date',
         'total_hours',
+        'deductions',
+        'gross_pay',
     ];
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class, 'employee_id');
+        return $this->belongsTo(Employee::class);
     }
 }

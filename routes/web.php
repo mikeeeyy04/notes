@@ -4,6 +4,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PayrollController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
 use Illuminate\Support\Facades\Artisan;
@@ -32,6 +33,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::middleware('auth')->group(function () {
 
+    // API endpoint for payroll calculation (AJAX)
+    Route::get('/api/payroll/calculate', [PayrollController::class, 'calculate'])->name('payroll.calculate');
+
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -51,17 +55,24 @@ Route::middleware('auth')->group(function () {
     Route::patch('/departments/{id}', [DepartmentController::class, 'update'])->name('departments.update');
     Route::delete('/departments/{id}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
-
     Route::get('/notes', [App\Http\Controllers\NoteController::class, 'index'])->name('notes');
     Route::get('/employees', [App\Http\Controllers\EmployeeController::class, 'index'])->name('employees');
+    Route::get('/employees/export/csv', [EmployeeController::class, 'exportCsv'])->name('employees.export.csv');
+    Route::get('/employees/export/excel', [EmployeeController::class, 'exportExcel'])->name('employees.export.excel');
+    Route::get('/employees/export/pdf', [EmployeeController::class, 'exportPdf'])->name('employees.export.pdf');
+    Route::get('/employees/print', [EmployeeController::class, 'print'])->name('employees.print');
     Route::get('/departments', [App\Http\Controllers\DepartmentController::class, 'index'])->name('departments');
     Route::get('/attendace', [App\Http\Controllers\AttendanceController::class, 'index'])->name('attendace');
 
     Route::get('/attendance', [AttendanceController::class, 'index'])->name('attendance.index');
     Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
 
+    Route::get('/payroll', [PayrollController::class, 'index'])->name('payroll.index');
+    Route::get('/payroll/create', [PayrollController::class, 'create'])->name('payroll.create');
+    Route::post('/payroll', [PayrollController::class, 'store'])->name('payroll.store');
+    Route::get('/payroll/logs/{employee}', [PayrollController::class, 'logs'])->name('payroll.logs');
+
     Route::get('/records', [RecordsController::class, 'index'])->name('records.index');
-    
 });
 
 Route::get('/clear-sessions', function () {

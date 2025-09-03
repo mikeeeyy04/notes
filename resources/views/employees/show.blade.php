@@ -9,7 +9,8 @@
                     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor"
                             class="bi bi-people-fill" viewBox="0 0 16 16">
-                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                            <path
+                                d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
                         </svg>
                         <h2 class="ms-2">Employees</h2>
                     </a>
@@ -39,13 +40,27 @@
                         <h4 class="fw-bold mb-3">
                             <i class="bi bi-table me-2"></i>Employee Directory
                         </h4>
+                        <div class="mb-3">
+                            <a href="{{ route('employees.export.csv') }}" class="btn btn-outline-dark btn-sm me-1">
+                                <i class="bi bi-file-earmark-spreadsheet"></i> Export CSV
+                            </a>
+                            <a href="{{ route('employees.export.excel') }}" class="btn btn-outline-dark btn-sm me-1">
+                                <i class="bi bi-file-earmark-excel"></i> Export Excel
+                            </a>
+                            <a href="{{ route('employees.export.pdf') }}" class="btn btn-outline-dark btn-sm me-1">
+                                <i class="bi bi-file-earmark-pdf"></i> Export PDF
+                            </a>
+                            <a href="{{ route('employees.print') }}" target="_blank" class="btn btn-outline-dark btn-sm">
+                                <i class="bi bi-printer"></i> Print
+                            </a>
+                        </div>
                         <div class="table-responsive">
-                            <table id="employeesTable" class="table table-hover">
+                            <table id="employeesTable" class="table table-hover border">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>Avatar</th>
                                         <th>Full Name</th>
-                                        <th>Department</th>
+                                        <th>Salary</th>
                                         <th>Age</th>
                                         <th>Birthday</th>
                                         <th>Actions</th>
@@ -56,23 +71,27 @@
                                         <tr>
                                             <td class="text-center" style="width: 100px;">
                                                 @if (!$employee->image)
-                                                    <img src="img/default-avatar.jpg" class="rounded-circle mx-auto d-block employee-avatar"
+                                                    <img src="img/default-avatar.jpg"
+                                                        class="rounded-circle mx-auto d-block employee-avatar"
                                                         alt="Avatar" />
                                                 @else
-                                                    <img src="{{ Storage::url($employee->image) }}" class="rounded-circle mx-auto d-block employee-avatar"
+                                                    <img src="{{ Storage::url($employee->image) }}"
+                                                        class="rounded-circle mx-auto d-block employee-avatar"
                                                         alt="Avatar" />
                                                 @endif
                                             </td>
                                             <td class="fw-semibold">
                                                 {{ trim(($employee->firstName ?? '') . ' ' . ($employee->middleName ?? '') . ' ' . ($employee->lastName ?? '')) }}
+                                                <br>
+                                                <span class="badge bg-secondary mt-1">{{ $employee->department->name ?? 'N/A' }}</span>
                                             </td>
-                                            <td>
-                                                <span class="badge bg-secondary">{{ $employee->department->name ?? 'N/A' }}</span>
-                                            </td>
+                                            <td>₱ {{ $employee->salary ?? '00' }}.00 per hour</td>
                                             <td>{{ $employee->age ?? 'N/A' }}</td>
-                                            <td>{{ $employee->birthday ? \Carbon\Carbon::parse($employee->birthday)->format('M d, Y') : 'N/A' }}</td>
+                                            <td>{{ $employee->birthday ? \Carbon\Carbon::parse($employee->birthday)->format('M d, Y') : 'N/A' }}
+                                            </td>
                                             <td>
-                                                <button class="btn btn-sm btn-dark btn-action" type="button" data-bs-toggle="modal"
+                                                <button class="btn btn-sm btn-dark btn-action" type="button"
+                                                    data-bs-toggle="modal"
                                                     data-bs-target="#viewEmployee{{ $employee->id }}">
                                                     <i class="bi bi-pencil me-1"></i> Edit
                                                 </button>
@@ -126,20 +145,20 @@
 
 
     <script>
-        $('#employeesTable').DataTable({
-            lengthChange: true,
-            pageLength: 10,
-            ordering: true,
-            order: [
-                [1, 'asc']
-            ],
-            responsive: true,
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
-            columnDefs: [{
-                orderable: false,
-                targets: [0, 5]
-            }]
+        $(document).ready(function() {
+            $('#employeesTable').DataTable({
+                lengthChange: true,
+                pageLength: 10,
+                ordering: true,
+                order: [
+                    [1, 'asc']
+                ],
+                responsive: true,
+                columnDefs: [{
+                    orderable: false,
+                    targets: [0, 5]
+                }]
+            });
         });
     </script>
 @endsection
