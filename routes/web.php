@@ -33,7 +33,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 Route::middleware('auth')->group(function () {
 
-    // API endpoint for payroll calculation (AJAX)
     Route::get('/api/payroll/calculate', [PayrollController::class, 'calculate'])->name('payroll.calculate');
 
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
