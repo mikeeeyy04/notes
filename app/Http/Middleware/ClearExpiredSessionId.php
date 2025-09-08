@@ -18,9 +18,8 @@ class ClearExpiredSessionId
     {
         if (!Auth::check()) {
             $sessionId = $request->session()->getId();
-
             if ($sessionId) {
-                User::where('session_id', $sessionId)->update(['session_id' => null]);
+                User::where('is_logged_in', 1)->update(['is_logged_in' => 0]);
             }
         }
     }

@@ -323,11 +323,11 @@
                                     </div>
                                 </a>
 
-                                <a href="/reports" class="col-12 col-sm-6 col-md-4 col-lg-3 text-decoration-none">
+                                <a href="/records" class="col-12 col-sm-6 col-md-4 col-lg-3 text-decoration-none">
                                     <div class="card h-100 shadow-sm border-0 hover-shadow">
                                         <div class="card-body d-flex align-items-center">
                                             <i class="bi bi-bar-chart fs-3 text-dark me-3"></i>
-                                            <span class="fs-6 fw-semibold text-dark">View Reports</span>
+                                            <span class="fs-6 fw-semibold text-dark">View Records</span>
                                             <i class="bi bi-arrow-right ms-auto text-muted"></i>
                                         </div>
                                     </div>

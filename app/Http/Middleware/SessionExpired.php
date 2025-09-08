@@ -13,9 +13,7 @@ class SessionExpired
     {
         if (Auth::check()) {
             $user = Auth::user();
-            $currentSessionId = $request->session()->getId();
-            
-            if ($user->session_id && $user->session_id !== $currentSessionId) {
+            if (!$user->is_logged_in) {
                 Auth::logout();
                 return redirect('/login')->with('message', 'Session expired');
             }

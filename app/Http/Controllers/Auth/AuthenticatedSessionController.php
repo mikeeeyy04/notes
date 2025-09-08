@@ -46,8 +46,7 @@ class AuthenticatedSessionController extends Controller
     {
         if (Auth::check()) {
             $userId = Auth::id();
-            
-            User::where('id', $userId)->update(['session_id' => null]);
+            User::where('id', $userId)->update(['is_logged_in' => 0]);
         }
 
         Auth::logout();

@@ -54,7 +54,7 @@ class LoginRequest extends FormRequest
             ]);
         }
 
-        if ($user->session_id && $user->session_id !== Session::getId()) {
+        if ($user->is_logged_in) {
             throw ValidationException::withMessages([
                 'email' => __('This account is already logged in on another device.'),
             ]);
@@ -73,8 +73,8 @@ class LoginRequest extends FormRequest
         session()->put('dummy', true);
         session()->save();
 
-        $user->session_id = Session::getId();
-        $user->save();
+    $user->is_logged_in = 1;
+    $user->save();
     }
 
 
